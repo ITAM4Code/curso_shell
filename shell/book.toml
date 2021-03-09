@@ -1,0 +1,6 @@
+[book]
+authors = ["Alonso Martinez"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Introducción a la terminal"
