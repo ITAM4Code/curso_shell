@@ -20,23 +20,28 @@ La forma más fácil de obtener bash es descargando git
 [aquí](https://git-scm.com/downloads). Después de eso puedes buscar
 "git bash" en el menú windows y abrirlo.
 
+En todas las plataformas si usas un IDE o un editor de texto como
+Visual Studio Code es muy probable que ya tenga una terminal
+integrada. Puedes abrir esa.
+
 ## Una vez instalado
 
 Al abrir la terminal aparecerá una pantalla con texto, y probablemente
 una línea de texto con lo siguiente:
 
 ```bash
-host:~$
+user@host:~$
 ```
 
 Esta línea se suele llamar _prompt_ y quiere decir un par de cosas. La
-primera palabra, en este caso `host` es el nombre de la computadora en
-la que se está trabajando. Eso cambiará en cada caso particular.
-Separado por `:` está un _tilde_ (`~`). Después de los dos puntos
-encontramos el nombre de la carpeta actual. La tilde es una
-abreviación para la carpeta "home" en tu sistema. Finalmente, hay un
-signo `$`. El cursor siempre aparece después de él, e indica que se
-pueden empezar a escribir comandos.
+línea empieza con la palabra `user` en este caso. En tu caso mostrará
+tu nombre de usuario en la computadora. La siguiente palabra, en este
+caso `host` es el nombre de la computadora en
+la que se está trabajando.  Separado por `:` está un _tilde_ (`~`).
+Después de los dos puntos encontramos el nombre de la carpeta actual.
+La tilde es una abreviación para la carpeta "home" en tu sistema.
+Finalmente, hay un signo `$`. El cursor siempre aparece después de él,
+e indica que se pueden empezar a escribir comandos.
 
 A partir de ahora adoptamos la convención de omitir el hostname y
 directorio actual (current working directory). Las líneas de código
