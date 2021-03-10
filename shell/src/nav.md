@@ -93,15 +93,130 @@ En ocasiones se puede poner tan ~~ridículo~~ complejo como
 $ curl -fsSL
 ```
 
-### Entonces ¿se supone que me sepa **todos** los posibles comandos?
-
-Usualmente solo se usan un par de argumentos para algún comando, 
-dependiendo de qué uso común le demos. Pero no es necesario saberlos 
-todos. Casi todos los comandos de bash e incluso los que se puedan 
-instalar aparte por el usuario tienen un argumento especial: `-h`, 
-corto para help. Por ejemplo, podemos ver los posibles argumentos de 
-`ls` así
+Para crear un directorio podemos usar el directorio `mkdir`. Es fácil
+recordar el nombre porque casi de lee "makedir". Por ejemplo para
+crear una carpeta llamada prueba en el directorio actual, una carpeta
+dentro de una carpeta llamada padre, o una carpeta en un path
+arbitrario podemos hacer:
 
 ```bash
-$ ls -h
+$ mdir prueba # Crear en el directorio actúal una carpeta llamada prueba
+$ mkdir -p prueba/dir_hijo # Crear carpeta dentro de otra
+$ mkdir dir1 dir2 dir3 # Crear muchas carpetas con un solo comando
+```
 
+## Una manera de crear archivos
+
+Bash da muchas opciones para crear nuevos archivos e incluso nos deja
+ponernos muy creativos. Una de las opciones más fáciles es usando el
+comando `touch` con el nombre del archivo nuevo.
+
+```bash
+$ touch nuevo_archivo.txt
+```
+
+El archivo `nuevo.txt` estará vacío y se creará con la extensión
+específica. Técnicamente `touch` hace más que crear archivos, pero es
+muy útil para crearlos rápidamente.
+
+Una manera más divertida de crear archivos es crearlos
+_redireccionando_ el resultado de otros comandos y guardarlo en un
+archivo nuevo. Por ejemplo, usando `ls` podemos guardar en un archivo
+nuevo llamado `carpetas.txt` todas las carpetas presentes en el
+directorio actual.
+
+```bash
+$ ls > carpetas.txt
+```
+
+El operador `>` redirige el _output_ que resulta de correr `ls`.
+Usualmente `ls` y la mayoría de comandos imprimen en la terminal sus
+resultados. Ese texto es tomado por `>` y enviado como contenido a un
+archivo. Por ejemplo, otra manera de crear un archivo con texto
+predeterminado se puede hacer con `echo`.
+
+```bash
+$ echo "# Esto es un readme" > README.md
+```
+
+Como mencionamos antes `echo` hace lo que el nombre sugiere: toma
+texto y lo imprime tal cual en la terminal. En el ejemplo anterior
+está tomando el texto "# Esto es un readme" y lo está escribiendo tal
+cual en archivo `README.MD`. Si no existía lo crea, pero si ya existía
+borra los contenidos anteriores y los reemplaza. Si no es eso lo que
+queremos y preferimos añadir al contenido anterior podemos usar el
+operador `>>`, que funciona exactamente igual pero evita perder la
+información que ya estaba en el archivo.
+
+### Ejemplo de uso común
+
+El comando `cat` sigue bien la tradición de nombres cortos y auto
+descriptivos. En este caso es corto para "concatenate", y hace justo
+eso. Recibe como argumentos nombres de archivos, y pega los contenidos
+de éstos uno detrás de otro. Esto es muy útil en muchas situaciones.
+
+Por ejemplo, si se tienen dos o más archivos, ¿cómo juntar sus
+contenidos en un archivo nuevo? Usando un mouse la solución obvia
+sería abrir cada archivo uno por uno, copiar sus contenidos y pegarlos
+en algún otro lugar. Usando la terminal esto se puede hacer
+escribiendo una sola línea de texto:
+
+```bash
+$ cat autores.txt contenido.txt >> doc.txt
+```
+Podría parecer que este es un ejemplo de juguete, y hasta cierto punto
+lo es. Pero es una situación que surge comúnmente en la práctica y se
+puede hacer aún más poderoso. Por ejemplo, ¿qué tal si hay demasiados
+archivos como para listarlos uno por uno? Por ejemplo, digamos que hay
+muchos archivos de texto que guardan notas de clase y están numerados
+por clase y necesitas todo en un solo archivo. Pensando que los
+archivos se llaman `clase_1.txt, clase_2.txt, ...` y así
+sucesivamente, podemos usar el siguiente comando.
+
+```bash
+$ cat clase_*.txt >> clases.txt
+```
+
+El `*` permite seleccionar todos los números al final del nombre de
+los archivos. Hay otra variedad de patrones que permiten seleccionar
+archivos dependiendo de patrones, pero lo veremos más tarde. El
+concepto de redirección también lo revisaremos más tarde. ¿Ya se
+empieza a ver el poder de la terminal?
+
+### Entonces ¿se supone que me sepa **todos** los posibles comandos?
+
+Usualmente solo se usan un par de argumentos para algún comando,
+dependiendo de qué uso común le demos. Pero no es necesario saberlos
+todos. Casi todos los comandos de bash e incluso los que se puedan
+instalar aparte por el usuario tienen un argumento especial: `-h`,
+corto para `--help`. Por ejemplo, podemos ver los posibles argumentos
+de `cat` así.
+
+```bash
+$ cat --help
+Usage: cat [OPTION]... [FILE]...
+Concatenate FILE(s) to standard output.
+
+With no FILE, or when FILE is -, read standard input.
+
+  -A, --show-all           equivalent to -vET
+  -b, --number-nonblank    number nonempty output lines, overrides -n
+  -e                       equivalent to -vE
+  -E, --show-ends          display $ at end of each line
+  -n, --number             number all output lines
+  -s, --squeeze-blank      suppress repeated empty output lines
+  -t                       equivalent to -vT
+  -T, --show-tabs          display TAB characters as ^I
+  -u                       (ignored)
+  -v, --show-nonprinting   use ^ and M- notation, except for LFD and TAB
+      --help     display this help and exit
+      --version  output version information and exit
+
+Examples:
+  cat f - g  Output f's contents, then standard input, then g's contents.
+  cat        Copy standard input to standard output.
+
+GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
+Full documentation at: <http://www.gnu.org/software/coreutils/cat>
+or available locally via: info '(coreutils) cat invocation'
+```

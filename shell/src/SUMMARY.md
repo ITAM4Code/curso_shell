@@ -6,6 +6,7 @@
 
 - [Primeros pasos](./first_steps.md)
   - [Navegación](./nav.md)
+  - [Moviendo y manipulando archivos](./files.md)
   - [Otros comandos útiles](./utils.md)
 
 - [Un poco de plomería](./plumbing.md)
