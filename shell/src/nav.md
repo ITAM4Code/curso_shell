@@ -57,9 +57,12 @@ En este ejemplo en mi directorio actual tengo algunas carpetas y
 algunos archivos. Puedes notar cual es cual porque los archivos suelen
 tener extensiones (como `.toml` en el caso de `book`).
 
-Los comandos como `ls` también pueden tomar "argumentos" u opciones.
-Por ejemplo, `ls` tiene opciones para ver a quién le pertenecen los
+Los comandos como `ls` también pueden tomar "flags" o modificadores.
+Por ejemplo, `ls` tiene flags para ver a quién le pertenecen los
 contenidos de un directorio y cuando se modificaron por última vez.
+El modificador `-l`da los detalles de propietario y fecha de
+modificación tamaño en bytes, entre otros, mientras que `-a` es corto
+para `--all` y hace que `ls` muestre incluso los archivos ocultos[^3:].
 
 ```bash
 $ ls -l -a
@@ -73,6 +76,12 @@ drwxr-xr-x  33 alonsoc1s  staff  1056 Mar  9 14:37 book
 drwxr-xr-x   4 alonsoc1s  staff   128 Mar  8 23:03 figs
 drwxr-xr-x  15 alonsoc1s  staff   480 Mar  8 21:33 src
 ```
+
+[^3]: En los sistemas estilo UNIX es común tener archivos ocultos.
+  Estos archivos suelen guardar configuraciones o carpetas protegidas
+  o restringidas. Por ejemplo la carpeta `.git` guarda la información
+  y archivos comprimidos que necesita para funcionar git. Está oculta
+  porque no se debería de modificar a mano.
 
 Por ahora no importan los detalles del output del comando anterior,
 solo la sintaxis para dar argumentos a un comando. La sintaxis
@@ -94,7 +103,7 @@ $ curl -fsSL
 ```
 
 Para crear un directorio podemos usar el directorio `mkdir`. Es fácil
-recordar el nombre porque casi de lee "makedir". Por ejemplo para
+recordar el nombre porque casi se lee "makedir". Por ejemplo para
 crear una carpeta llamada prueba en el directorio actual, una carpeta
 dentro de una carpeta llamada padre, o una carpeta en un path
 arbitrario podemos hacer:
@@ -142,7 +151,7 @@ $ echo "# Esto es un readme" > README.md
 Como mencionamos antes `echo` hace lo que el nombre sugiere: toma
 texto y lo imprime tal cual en la terminal. En el ejemplo anterior
 está tomando el texto "# Esto es un readme" y lo está escribiendo tal
-cual en archivo `README.MD`. Si no existía lo crea, pero si ya existía
+cual en archivo `README.md`. Si no existía lo crea, pero si ya existía
 borra los contenidos anteriores y los reemplaza. Si no es eso lo que
 queremos y preferimos añadir al contenido anterior podemos usar el
 operador `>>`, que funciona exactamente igual pero evita perder la
@@ -183,7 +192,7 @@ archivos dependiendo de patrones, pero lo veremos más tarde. El
 concepto de redirección también lo revisaremos más tarde. ¿Ya se
 empieza a ver el poder de la terminal?
 
-### Entonces ¿se supone que me sepa **todos** los posibles comandos?
+### Entonces ¿se supone que me sepa **todos** los modificadores posibles?
 
 Usualmente solo se usan un par de argumentos para algún comando,
 dependiendo de qué uso común le demos. Pero no es necesario saberlos
