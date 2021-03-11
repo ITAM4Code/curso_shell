@@ -5,7 +5,13 @@ los aquí cubiertos es equivalente usar zsh, fish, csh u otra opción.
 En este curso se asume que estás trabajando en una máquina Linux,
 MacOS, o bien Windows pero con bash instalado. Bash no está instalado
 por defecto en windows, pero se puede instalar mediante el paquete de
-desarrollo  de git.
+desarrollo de git.
+
+> La notación usual para estas notas es usar fuentes monoespaciadas
+> (como `asi`) para denotar un comando, el resultado de un comando, o
+> algo que se debe de escribir en la terminal. A veces se usa también
+> para nombres de archivo y carpetas si se está haciendo referencia a
+> la salida de un comando.
 
 Estas notas están basadas en varias fuentes. Entre ellas:
 

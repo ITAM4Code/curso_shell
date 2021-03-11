@@ -55,7 +55,55 @@ src
 
 En este ejemplo en mi directorio actual tengo algunas carpetas y
 algunos archivos. Puedes notar cual es cual porque los archivos suelen
-tener extensiones (como `.toml` en el caso de `book`).
+tener extensiones (como `.toml` en el caso de `book`). En algunas
+terminales y en shells más modernos `ls` colorea el listado para hacer
+notar si son carpetas, archivos de texto, ejecutables, etc... Si todo
+falla puedes usar el comando `file` para obtener más información.
+
+```bash
+$ file src # Usando file con una carpeta
+src: directory
+
+$ file book.toml # Usando file con un archivo
+book.toml: UTF-8 Unicode text
+```
+
+Un comando no-estándar muy útil para ver la estructura de árbol del
+sistema de archivos es el adecuadamente llamado `tree`.
+
+```bash
+$ tree
+.
+|-- book
+|   |-- 404.html
+|   |-- files.html
+|   |-- fonts
+|   |   `-- source-code-pro-v11-all-charsets-500.woff2
+|   `-- utils.html
+|-- book.toml
+`-- src
+    |-- SUMMARY.md
+	|-- figs
+	|   `-- dennis_y_ken.png
+	`-- utils.md
+
+9 directories, 74 files
+```
+
+Para navegar en el sistema de archivos o en otras palabras, cambiar de
+directorio, está el comando `cd` que es abreviatura de **c**hange
+**d**irectory. `cd` te permite moverte dando paths relativos o
+absolutos. Dando un path relativo la navegación es como navegar con el
+mouse, vas a subcarpetas del directorio actual o subes una carpeta.
+Navegar con paths absolutos nos permite dar brincos entre cualesquiera
+dos lugares del sistema de archivos. Tomando el ejemplo anterior,
+podemos navegar a la carpeta `src`, o navegar a otra parte
+completamente diferente.
+
+```bash
+$ cd src # Entrando a la carpeta src del directorio actual
+$ cd ~/Documents/otroproyecto # Brincando a un lugar completamente distinto
+```
 
 Los comandos como `ls` también pueden tomar "flags" o modificadores.
 Por ejemplo, `ls` tiene flags para ver a quién le pertenecen los
@@ -79,15 +127,14 @@ drwxr-xr-x  15 alonsoc1s  staff   480 Mar  8 21:33 src
 
 [^3]: En los sistemas estilo UNIX es común tener archivos ocultos.
   Estos archivos suelen guardar configuraciones o carpetas protegidas
-  o restringidas. Por ejemplo la carpeta `.git` guarda la información
-  y archivos comprimidos que necesita para funcionar git. Está oculta
-  porque no se debería de modificar a mano.
+  o restringidas. Por ejemplo el archivo `.gitignore` presente en esta
+  carpeta configura los tipos de archivos que queremos que git ignore.
 
 Por ahora no importan los detalles del output del comando anterior,
-solo la sintaxis para dar argumentos a un comando. La sintaxis
-estándar es `-` y una letra, o bien `--` y el nombre largo de la
-opción. Bash valora mucho la eficiencia, entonces los nombres de los
-comandos son lo más cortos posibles, como una letra. El ejemplo
+solo la sintaxis para dar modificadores a un comando. La sintaxis
+estándar es `-` y una letra, o bien `--` y el nombre largo del
+modificador. Bash valora mucho la eficiencia, entonces los nombres de
+los comandos son lo más cortos posibles, como una letra. El ejemplo
 anterior se puede hacer aún más corto! Cuando se tienen varios
 argumentos de una sola letra se pueden combinar bajo el mismo `-` para
 formar algo como:
@@ -102,16 +149,36 @@ En ocasiones se puede poner tan ~~ridículo~~ complejo como
 $ curl -fsSL
 ```
 
-Para crear un directorio podemos usar el directorio `mkdir`. Es fácil
-recordar el nombre porque casi se lee "makedir". Por ejemplo para
-crear una carpeta llamada prueba en el directorio actual, una carpeta
-dentro de una carpeta llamada padre, o una carpeta en un path
-arbitrario podemos hacer:
+## Creando carpetas
+
+Para crear un directorio podemos usar el comando `mkdir`. Es fácil
+recordar el nombre porque casi se lee "makedir". Vale la pena hacer
+notar que `mkdir` es más poderoso y versátil que dar click derecho en
+el explorador de archivos y dar click a la opción "nueva carpeta".
+Tareas que tomarían repetir la misma operación varias veces, como
+crear carpetas anidadas, muchas carpetas a la vez, o crear carpetas
+por lote, se pueden hacer en una solo línea.
+
+Primero un ejemplo de crear una carpeta vacía en el directorio actual.
 
 ```bash
-$ mdir prueba # Crear en el directorio actúal una carpeta llamada prueba
-$ mkdir -p prueba/dir_hijo # Crear carpeta dentro de otra
-$ mkdir dir1 dir2 dir3 # Crear muchas carpetas con un solo comando
+$ mkdir nueva_carpeta
+```
+
+Usando el modificador `-p` (corto para parent) podemos anidar carpetas
+a la profundidad que queramos. No importa si las carpetas contenedoras
+(padre) existen o no!
+
+```bash
+$ mkdir nueva_carpeta/carpeta_hija # No necesitamos -p porque ya existe carpeta padre
+$ mkdir -p otra_nueva/hija_1/hija_2 # Necesitamos -p porque no existía la carpeta padre otra_nueva
+```
+
+También podemos crear muchas carpetas en un solo comando, estén o no a
+la misma profundidad.
+
+```bash
+$ mkdir carp_1 carp_2 carp_3
 ```
 
 ## Una manera de crear archivos
