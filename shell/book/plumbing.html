@@ -164,6 +164,80 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="un-poco-de-plomería"><a class="header" href="#un-poco-de-plomería">Un poco de plomería</a></h1>
+<p>Ya vimos algunos ejemplos de cómo la terminal de mucho poder al
+usuario que sabe usarla, su auténtico poder se libera haciendo uso de
+las características que precisamente la hacen diferente a trabajar con
+un navegador de archivos, por ejemplo. Es bueno recordar que un
+<em>shell</em> es un intérprete de comandos en toda la extensión de la
+palabra.</p>
+<h2 id="inputs-outputs-errores"><a class="header" href="#inputs-outputs-errores">Inputs, outputs, errores</a></h2>
+<p>Hasta ahora hemos usado los términos <em>input</em> y <em>output</em> sin mucho
+cuidado. Ahora habrá que clarificar su uso, porque son conceptos muy
+importantes. El que el <em>shell</em> tenga concepto de esto le permite hacer
+mucho más que crear y mover archivos ociosamente. No hay que olvidar
+que en tiempos de UNIX ésta era la única manera de interactuar con una
+computadora, y muchas personas hacían tareas complejas como procesar
+texto, todo sin siquiera acercase a algo como word.</p>
+<p>Como mencionamos antes, los comandos tienen un output determinado.
+Este se suele mostrar en la terminal justo después de que se corrió el
+comando, como lo hemos estado mostrando en estas notas. Los comandos
+de bash están diseñados para usar dos canales de comunicación con el
+usuario: standard out (stdout) y standard error (stderr). Cuando
+creamos un archivo con el comando,</p>
+<pre><code class="language-bash">$ ls &gt; contenidos.txt
+</code></pre>
+<p>redirigimos des stdout hacia otro lugar, en donde bash lo tomó y lo
+mandó como contenido al archivo <code>contenidos.txt</code>. Ese lugar se llama
+standard in (stdin). Entonces, ahora tenemos un canal para enviar
+información a comandos, y dos en los cuales la recibimos. Esta
+redirección es mucho más versátil que solo escribir archivos nuevos.</p>
+<h2 id="el-pipe"><a class="header" href="#el-pipe">El pipe</a></h2>
+<p>El operador <code>&gt;</code> nos permitió redirigir stdout a un archivo. Lo
+interesante es que se puede redirigir de stdout directo a stdin para
+que otros comandos los puedan leer. Por ejemplo, <code>less</code> tomaba como
+argumento un nombre de archivo, pero en realidad no es necesario
+dárselo! Si se corre <code>less</code> sin argumentos, tratará de leer de stdin.
+En un ejemplo concreto, podemos usar el ejemplo de <code>grep</code> otra vez y
+ahora buscar una palabra muy común. Por ejemplo:</p>
+<pre><code class="language-bash">$ grep el *
+</code></pre>
+<p>Ese comando buscará las líneas donde aparezca la palabra &quot;el&quot; en los
+archivos que componen éstas notas. Es de esperarse que haya muchos
+resultados, por lo que <code>grep</code> llenará la pantalla sin problemas. Si se
+quiere hacer una análisis minucioso de las apariciones, <em>scrollear</em>
+arriba y abajo en la ventana de la terminal no es lo más cómodo.
+Intentemos escribirlo a un archivos!</p>
+<pre><code class="language-bash">$ grep el * &gt; resultados.txt
+</code></pre>
+<p>Ahora podemos usar <code>less</code> para abrir el archivo con más comodidad.</p>
+<pre><code class="language-bash">$ less resultados.txt
+</code></pre>
+<p>Pero, ¿no se siente arcaico crear un archivo intermedio para después
+tener que borrarlo? Lo es. Podemos evitar este paso dándolo a <code>less</code>
+lo que queremos que nos muestre directamente.</p>
+<pre><code class="language-bash">$ grep el * | less
+</code></pre>
+<p>El caracter <code>|</code> se llama <em>pipe</em> en inglés. En términos simples, toma
+el stdout del lado izquierdo y lo manda a stdin para el comando del
+lado derecho. Esto se llama &quot;piping&quot; en inglés y me referiré a ello
+como &quot;pipear&quot; a falta de una mejor traducción.</p>
+<p>En el ejemplo anterior estamos tomando stdout de <code>grep</code>, el listado de
+coincidencias como en el ejemplo de la sección anterior, y en vez de
+mostrarlo todo al mismo tiempo en la terminal, lo envía como input a
+<code>less</code>, que como recordamos, toma ese texto y lo divide en páginas
+para facilitar su lectura.</p>
+<p>No hay límite para cuantos comandos se pueden encadenar uno tras otro,
+y el uso creativo de estos bloques básicos de construcción da para
+resultados realmente increíbles. Al principio de las notas se comentó
+que la filosofía de diseño UNIX era crear muchos programas pequeños
+diseñados para hacer una y solo una cosa muy bien. Ahora debería hacer
+más sentido esa decisión de diseño. No se necesitan programas
+complicados cuando se tiene los ladrillos y el cemento, y mucha
+creatividad.</p>
+<p>Los ejemplos más bellos de éste concepto en acción los da el mismísimo
+Brian Kernighan en esta <a href="https://www.youtube.com/watch?v=tc4ROCJYbm0">joya
+histórica</a>, un documental
+de UNIX con la aparición de los iconos Kernighan y Ritchie.</p>
 
                     </main>
 

@@ -14,5 +14,4 @@
 
 - [Siguientes pasos](./next_steps.md)
   - [Customización](./customization.md)
-  - [Comandos más avanzados](./advanced.md)
   - [Scripting](./scripting.md)

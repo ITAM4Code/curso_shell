@@ -296,3 +296,7 @@ GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
 Full documentation at: <http://www.gnu.org/software/coreutils/cat>
 or available locally via: info '(coreutils) cat invocation'
 ```
+
+Si todo falla, el comando `man`, de "manual", te muestra un manual
+completo para el uso del comando. Usualmente contiene una sinopsis y
+todos los posibles modificadores.

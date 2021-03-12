@@ -164,6 +164,84 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="otros-comandos-útiles"><a class="header" href="#otros-comandos-útiles">Otros comandos útiles</a></h1>
+<p>El contenido de los últimos capítulos puede parecer restrictivo y es
+porque si lo es. Esos son apenas los fundamentos para hacer cosas que
+ya sabías hacer en tu explorador de archivos. Pero la terminal tiene
+mucho más qué ofrecer, y algunas de estas herramientas te pueden ser
+muy útiles a la hora de resolver los problemas con los que se suele
+encontrar una persona que desarrolla software. Esto es apenas un
+teaser, no se cubre ningún comando con particular atención.</p>
+<h2 id="grep"><a class="header" href="#grep">Grep</a></h2>
+<p>Con el comando <code>grep</code> podemos encontrar texto dentro de archivos u
+otros medios de input a la terminal. Lo interesante es que <code>grep</code> no
+solo encuentra texto tal cual, sino que está equipado para encontrar
+<em>patrones</em> usando un subconjunto de algo llamado &quot;expresiones
+regulares&quot; que amerita sus propias notas. Basta saber que <code>*</code> sirve
+para encontrar &quot;cualquier cadena de caracteres&quot;, de la misma manera en
+la que usamos <code>*</code> antes para seleccionar todos los archivos dentro de
+una carpeta. Veremos esto más a detalle.</p>
+<p>Por ejemplo, digamos que busco las líneas que contengan la palabra
+&quot;terminal&quot; en estas notas.</p>
+<pre><code class="language-bash">$ grep terminal *
+files.md:Una vez más, el usar una terminal nos permite ahorrarnos algunos pasos
+first_steps.md:## ¿Cómo abro una de esas terminales?
+first_steps.md:busca &quot;terminal&quot;. En MacOS al escribir terminal en la barra de
+historia.md:las estaciones con teclados se llamaban _terminales_
+intro.md:Muchas personas argumentan que las _terminales_ son
+meta.md:algo que se debe de escribir en la terminal. A veces se usa también
+nav.md:working directory. Es importante tener en mente que la terminal
+</code></pre>
+<p>Grep muestra el nombre del archivo donde encontró una coincidencia,
+seguido de la línea donde está.</p>
+<h2 id="less"><a class="header" href="#less">Less</a></h2>
+<p>A veces nos interesa dar un vistazo rápido a un archivo, y localizarlo
+en la terminal para después abrirlo en el explorador de archivos es
+muy ineficiente. Para eso existe el comando <code>less</code>. El comando actúa
+como un paginador, algo que parte el archivo en la cantidad de líneas
+que caben en tu ventana actual. Para avanzar una &quot;página&quot; puedes usar
+la barra de espacio, para ir atrás una puedes usar la tecla b. Para
+salir presiona q.</p>
+<p>El comando <code>man</code> mencionado en la sección sobre navegación utiliza un
+paginador muy similar, también puedes salir de ahí presionando q. El
+nombre <code>less</code>puede parecer contraintuitivo. Se debe a que es sucesor
+de otro paginador llamado <code>more</code> por el texto <code>--MORE--</code> que aparece
+en la parte de abajo de la pantalla cuando lo usas.</p>
+<h2 id="head--tail"><a class="header" href="#head--tail">Head &amp; Tail</a></h2>
+<p>A veces usar <code>less</code> es más de lo necesario. Si necesitas información
+de las primeras líneas en un archivo, puedes usar <code>head</code>, y si
+necesitas información de las últimas, puedes usar <code>tail</code>. Los nombres
+de los comandos son auto-descriptivos. Cabe mencionar que se puede
+ajustar el número de líneas que muestran <code>head</code> y <code>tail</code>. ¿Cuál es la
+sintaxis para eso? Buen momento para poner en práctica <code>man</code>!</p>
+<h2 id="diff"><a class="header" href="#diff">Diff</a></h2>
+<p>En muchas ocasiones es útil comparar dos archivos. Por ejemplo,
+archivos <code>.csv</code> con muchas filas de datos. Diff permite comparar
+archivos línea por línea y solo muestra las líneas que no coinciden.
+Si los archivos coinciden en todos lados no muestra nada. Se usa así:</p>
+<pre><code class="language-bash">diff archivo_a.csv archivo_b.csv
+</code></pre>
+<h2 id="find"><a class="header" href="#find">Find</a></h2>
+<p>Otra cosa que podrías extrañar de tu explorador de archivos es la
+barra de búsqueda. También se pueden buscar archivos en la misma
+terminal. Por ejemplo, si sabes con seguridad que buscas un archivo
+específico en alguna parte del árbol de archivos puedes buscarlo sin
+importar a qué profundidad esté. Por ejemplo, puedo buscar el archivo
+<code>meme_git.png</code> de un ejemplo anterior dentro de mis Documentos.</p>
+<pre><code class="language-bash">$ find ~/Documents/ -name meme_git.png
+</code></pre>
+<p>Esta forma de buscar también da el poder de buscar archivos <em>por sus
+contenidos</em>, o dando un patrón de búsqueda para el nombre de archivo
+al estilo de <code>grep</code>, pero eso es algo avanzado para este curso.</p>
+<h2 id="uniq"><a class="header" href="#uniq">Uniq</a></h2>
+<p>El comando <code>uniq</code> por default muestra las líneas únicas &quot;no repetidas&quot;
+en un archivo de texto. Suele ser muy común pegar dos veces al copiar
+una línea, entonces una manera rápida de verificar es usando <code>uniq</code>.
+El comando también se puede configurar para solo mostrar las
+repetidas, lo cual es útil en archivos de texto como escritos o
+scripts, mientras que la configuración estándar es útil por ejemplo
+para detectar observaciones repetidas en un archivo de formato <code>.csv</code>.</p>
+<pre><code class="language-bash">$ uniq README.md # Encuentra líneas únicas en el archivo.
+</code></pre>
 
                     </main>
 

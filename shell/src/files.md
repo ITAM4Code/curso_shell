@@ -60,3 +60,79 @@ book
 libro.toml
 src
 ```
+
+## Copiando archivos
+
+Copiar archivos es muy simple. El comando para hacerlo se llama `cp`
+(por **c**o**p**y). Su sintaxis es muy similar a la de `mv`, toma por
+primer argumento el nombre del archivo que se va a copiar, y el
+segundo argumento es el nombre del archivo copia. Por ejemplo, si
+queremos hacer un backup de `book.toml` lo podemos hacer con el
+siguiente comando.
+
+```bash
+$ cp book.toml book_backup.toml
+```
+
+Como ya es costumbre, podemos usar paths relativos o absolutos para
+copiar cualesquiera dos archivos en el sistema de archivos, sin
+importar qué tan lejos estén. Por ejemplo, para la creación de estas
+notas usé una foto que ya tenía guardada en mis archivos en otro
+carpeta lejana.
+
+```bash
+$ cp ~/Documents/projects/meme_git.png meme_git.png
+```
+
+Nótese que el segundo argumento es un nombre de archivo simple, o eso
+parece a primera vista. En realidad se puede pensar como un path
+relativo! Es un path que apunta directamente al current working
+directory. Entonces el comando anterior copia un archivo
+`meme_git.png` localizado en `~/Documents/projects/` a el directorio
+actual con el nombre `meme_git.png`.
+
+## Borrando carpetas y archivos
+
+> ADVERTENCIA: A diferencia de usar un explorador de archivos gráfico,
+> borrar un archivo o carpeta no envía archivos a una papelera u otro
+> espacio intermedio. Lo que se borra con estos comandos NO HAY MANERA
+> DE RECUPERAR.
+
+Borrar archivos es tan fácil como moverlos o renombrarlos, hay un
+comando de nombre fácil de recordar. Ese comando se llama `rm` por
+**r**e**m**ove. A diferencia de por ejemplo `mv`, `rm` solo necesita
+un argumento: el nombre del archivo a borrar. Sin embargo puede tomar
+muchos argumentos y todos ellos serán borrados. Por ejemplo, si
+queremos borrar el archivo `book.toml` el siguiente comando lo hace.
+
+```bash
+$ rm book.toml
+```
+
+Realmente no hay mucho más qué decir respecto a borrar archivos, pero
+borrar carpetas requiere un poco más de discusión. Si intentamos
+borrar una capeta no-vacía con la misma estrategia con la que borramos
+un archivo obtendremos un error.
+
+```bash
+$ rm book
+rm: book: is a directory
+```
+
+Dado que no hay un undo para `rm`, el comando tiene un poco de
+seguridad integrada. Detecta que la carpeta `book` no está vacía, y
+avisa para que no borres una cantidad enorme de archivos por error. Si
+efectivamente querías borrar toda la carpeta y sus contenidos hay un
+modificador que permite hacer eso: `-r` por `--recursive`. Por
+ejemplo.
+
+```bash
+$ rm -r book
+```
+Otro comando para eliminar carpetas es `rmdir`.
+
+> En foros para principiantes de Linux hay un comando "de broma" muy
+> común: `sudo rm -rf /*`. Nunca nunca es buena idea correr este
+> comando. `sudo` es un comando que da permisos de
+> administrador para correr un comando. Puntos extra si logras ver
+> porqué es mala idea correr este comando.
